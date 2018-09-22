@@ -17,8 +17,8 @@ public class RenderEvents {
         World world = Minecraft.getMinecraft().world;
         if(world != null && player!=null && !player.isCreative() && !player.isSpectator()) {
 
-            if(e.getType() == ElementType.HEALTH || e.getType() == ElementType.EXPERIENCE || e.getType() == ElementType.FOOD || e.getType() == ElementType.ARMOR ) {
-                //e.setCanceled(true);
+            if(e.getType() == ElementType.HEALTH || e.getType() == ElementType.EXPERIENCE || e.getType() == ElementType.ARMOR ) {
+                e.setCanceled(true);
             }
 
         }

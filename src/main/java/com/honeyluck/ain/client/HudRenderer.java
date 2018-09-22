@@ -3,6 +3,7 @@ package com.honeyluck.ain.client;
 import com.honeyluck.ain.Aincraft;
 import com.honeyluck.ain.util.RenderUtils;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.texture.TextureManager;
@@ -14,6 +15,7 @@ public class HudRenderer {
     public static void render() {
         TextureManager textureManager = Minecraft.getMinecraft().getTextureManager();
         EntityPlayer player = Minecraft.getMinecraft().player;
+        FontRenderer fontRenderer = Minecraft.getMinecraft().fontRenderer;
 
         textureManager.bindTexture(new ResourceLocation(Aincraft.MOD_ID + ":textures/hud/health.png"));
         GlStateManager.pushMatrix();
@@ -34,6 +36,9 @@ public class HudRenderer {
         GlStateManager.color((float) 72/255, (float) 140/255, (float) 172/255);
         RenderUtils.drawModalRectWithCustomSizedTexture(36, 14, 32, 24, 120, 3, 256, 256);
 
+        GlStateManager.scale(0.5, 0.5, 1);
+        fontRenderer.drawString(player.getName(), 14, 24, 0xFFFFFFFF);
+        GlStateManager.scale(1, 1, 1);
         GlStateManager.popMatrix();
     }
 }
