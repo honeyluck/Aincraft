@@ -9,7 +9,7 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.relauncher.Side;
 
-@Mod(modid = Aincraft.MOD_ID, name = Aincraft.MOD_NAME, version = Aincraft.MOD_VERSION, dependencies="required-after:lucraftcore")
+@Mod(modid = Aincraft.MOD_ID, name = Aincraft.MOD_NAME, version = Aincraft.MOD_VERSION)
 public class Aincraft {
     public static final String MOD_ID = "ain";
     public static final String MOD_NAME = "Aincraft";
@@ -27,7 +27,7 @@ public class Aincraft {
 
     @Mod.EventHandler
     public void init(FMLInitializationEvent e) {
-
+        proxy.init();
     }
 
     @Mod.EventHandler
