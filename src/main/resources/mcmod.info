@@ -1,0 +1,16 @@
+[
+{
+  "modid": "sao",
+  "name": "The Sword Art Online Mod",
+  "description": "This mod is a fan creation based on the Anime / Manga series Sword Art Online",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Honeyluck"],
+  "credits": "War_Major and EdusgprNetwork for assistance with textures",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

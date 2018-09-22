@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "OOO",
+    "C C",
+    "BBB"
+  ],
+  "key": {
+    "O": {
+      "item": "lucraftcore:plate",
+      "data": 10
+    },
+    "C": {
+      "item": "lucraftcore:advanced_circuit"
+    },
+    "B": {
+      "item": "minecraft:stained_glass_pane",
+      "data": 11
+    }
+  },
+  "result": {
+    "item": "ain:nerve_Gear",
+    "count": 1
+  }
+}
