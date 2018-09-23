@@ -1,4 +1,4 @@
-package com.honeyluck.ain.util;
+package com.honeyluck.ain.common.enums;
 
 public enum EnumHealthColour {
 

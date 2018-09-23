@@ -1,16 +1,14 @@
 package com.honeyluck.ain.client;
 
 import com.honeyluck.ain.Aincraft;
-import com.honeyluck.ain.util.EnumHealthColour;
+import com.honeyluck.ain.common.enums.EnumHealthColour;
 import com.honeyluck.ain.util.RenderUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
-import org.lwjgl.Sys;
 
 public class HudRenderer {
 
@@ -43,8 +41,8 @@ public class HudRenderer {
         GlStateManager.color((float) 72/255, (float) 140/255, (float) 172/255);
         RenderUtils.drawModalRectWithCustomSizedTexture(36, 14, 32, 24, 120, 3, 256, 256);
 
-        GlStateManager.scale(xScale, 0.5, 1);
-        fontRenderer.drawString(name, (int)(40/xScale - nameWidth) / 2, 24, 0xFFFFFFFF);
+        GlStateManager.scale(xScale, 0.75, 1);
+        fontRenderer.drawString(name, (int)(40/xScale - nameWidth) / 2, 15, 0xFFFFFFFF);
         GlStateManager.scale(1, 1, 1);
         GlStateManager.popMatrix();
     }
