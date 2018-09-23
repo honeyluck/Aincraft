@@ -1,9 +1,15 @@
 package com.honeyluck.ain.util;
 
+import com.honeyluck.ain.Aincraft;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.client.resources.IReloadableResourceManager;
+import net.minecraft.client.settings.GameSettings;
+import net.minecraft.util.ResourceLocation;
 
 public class RenderUtils {
 
@@ -14,6 +20,8 @@ public class RenderUtils {
         GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
         GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
     }
+
+
 
     /**
      * Draws a textured rectangle at z = 0. Args: x, y, u, v, width, height, textureWidth, textureHeight
@@ -30,5 +38,28 @@ public class RenderUtils {
         bufferbuilder.pos((double)(x + width), (double)y, 0.0D).tex((double)((u + (float)width) * f), (double)(v * f1)).endVertex();
         bufferbuilder.pos((double)x, (double)y, 0.0D).tex((double)(u * f), (double)(v * f1)).endVertex();
         tessellator.draw();
+    }
+
+    public static void setFont(boolean enabled) {
+        Minecraft minecraft = Minecraft.getMinecraft();
+
+        if (minecraft.fontRenderer == null) return;
+
+        ResourceLocation fontLocation = null;
+
+        if(enabled) {
+            fontLocation = new ResourceLocation(Aincraft.MOD_ID, "textures/hud/sao font.png");
+        }
+        else{
+            fontLocation = new ResourceLocation("textures/font/ascii.png");
+        }
+
+        GameSettings gamesettings = minecraft.gameSettings;
+        minecraft.fontRenderer = new FontRenderer(gamesettings, fontLocation, minecraft.getTextureManager(), false);
+        if (gamesettings.language != null) {
+            minecraft.fontRenderer.setUnicodeFlag(minecraft.isUnicode());
+            minecraft.fontRenderer.setBidiFlag(minecraft.getLanguageManager().isCurrentLanguageBidirectional());
+        }
+        ((IReloadableResourceManager) minecraft.getResourceManager()).registerReloadListener(minecraft.fontRenderer);
     }
 }

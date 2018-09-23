@@ -1,6 +1,8 @@
 package com.honeyluck.ain;
 
+import com.honeyluck.ain.config.AincraftConfig;
 import com.honeyluck.ain.proxy.CommonProxy;
+import com.honeyluck.ain.util.RenderUtils;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -32,6 +34,8 @@ public class Aincraft {
 
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent e) {
-
+        if(side.isClient()) {
+            RenderUtils.setFont(AincraftConfig.MISC.font);
+        }
     }
 }

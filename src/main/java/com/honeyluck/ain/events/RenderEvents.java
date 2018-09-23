@@ -1,6 +1,7 @@
 package com.honeyluck.ain.events;
 
 import com.honeyluck.ain.client.HudRenderer;
+import com.honeyluck.ain.util.RenderUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
@@ -31,6 +32,7 @@ public class RenderEvents {
         World world = Minecraft.getMinecraft().world;
         if(world != null && player!=null && !player.isCreative() && !player.isSpectator()) {
             HudRenderer.render();
+            //System.out.println(player.getHealth() / player.getMaxHealth());
         }
     }
 
