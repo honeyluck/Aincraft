@@ -1,5 +1,6 @@
 package com.honeyluck.ain;
 
+import com.honeyluck.ain.common.capability.CapabilityFairy;
 import com.honeyluck.ain.config.AincraftConfig;
 import com.honeyluck.ain.proxy.CommonProxy;
 import com.honeyluck.ain.util.RenderUtils;
@@ -24,7 +25,7 @@ public class Aincraft {
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent e) {
-
+        CapabilityFairy.init();
     }
 
     @Mod.EventHandler

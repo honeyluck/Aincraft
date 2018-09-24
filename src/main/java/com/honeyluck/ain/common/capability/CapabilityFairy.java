@@ -13,10 +13,10 @@ import net.minecraftforge.fml.common.Mod;
 public class CapabilityFairy implements IFairy {
 
     private EntityPlayer player;
-    private boolean isFlying;
+    private boolean isFlying = true;
     private float mana, maxMana;
     private int flyingTicks, exp, level;
-    private String raceName;
+    private String raceName = EnumRace.NONE.getRaceName();
 
     @CapabilityInject(IFairy.class)
     public static final Capability<IFairy> CAPABILITY = null;
@@ -38,20 +38,29 @@ public class CapabilityFairy implements IFairy {
         return this.player;
     }
 
+    //Returns the players Regeneration capability
+    public static IFairy get(EntityPlayer player) {
+        if (player.hasCapability(CAPABILITY, null)) {
+            return player.getCapability(CAPABILITY, null);
+        }
+        throw new IllegalStateException("Missing Fairy capability: " + player + ", please report this to the issue tracker");
+    }
+
     @Override
     public void update() {
+
         if(isFlying()) {
-            if(getTicksFlying() >= 0) {
+            if(getTicksFlying() >= 0 && getTicksFlying() < 6000) {
                 setTicksFlying(getTicksFlying() + 1);
             }
 
-            if(getTicksFlying() >= 500) {
+            if(getTicksFlying() >= 6000) {
                 setFlying(false);
-                setTicksFlying(500);
+                setTicksFlying(6000);
             }
         }
         if(isFlying() == false) {
-            if(getTicksFlying() > 0 && getTicksFlying() <= 500) {
+            if(getTicksFlying() > 0 && getTicksFlying() <= 6000) {
                 setTicksFlying(getTicksFlying() - 1);
             }
         }
@@ -124,7 +133,7 @@ public class CapabilityFairy implements IFairy {
 
     @Override
     public EnumRace getRace() {
-        return EnumRace.valueOf(raceName);
+        return EnumRace.getRace(raceName);
     }
 
     @Override
@@ -133,6 +142,8 @@ public class CapabilityFairy implements IFairy {
 
         nbt.setBoolean("isFlying", isFlying);
         nbt.setInteger("ticksFlying", flyingTicks);
+        nbt.setInteger("fairyExp", exp);
+        nbt.setInteger("fairyLevel", level);
         nbt.setFloat("mana", mana);
         nbt.setFloat("maxMana", maxMana);
         nbt.setString("race", raceName);
@@ -144,6 +155,8 @@ public class CapabilityFairy implements IFairy {
     public void deserializeNBT(NBTTagCompound nbt) {
         setFlying(nbt.getBoolean("isFlying"));
         setTicksFlying(nbt.getInteger("ticksFlying"));
+        setExp(nbt.getInteger("fairyExp"));
+        setLevel(nbt.getInteger("fairyLevel"));
         setMana(nbt.getFloat("mana"));
         setMaxMana(nbt.getFloat("maxMana"));
         setRace(nbt.getString("race"));
