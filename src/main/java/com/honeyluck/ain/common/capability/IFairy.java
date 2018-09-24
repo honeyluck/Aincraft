@@ -15,6 +15,7 @@ public interface IFairy extends INBTSerializable<NBTTagCompound> {
     boolean isFlying();
     void setFlying(boolean flying);
 
+    //Races
     EnumRace getRace();
     void setRace(String name);
 
@@ -24,7 +25,12 @@ public interface IFairy extends INBTSerializable<NBTTagCompound> {
     //Mana
     float getMana();
     void setMana(float mana);
-
     float getMaxMana();
     void setMaxMana(float mana);
+
+    //Exp
+    int getExp();
+    void setExp(int exp);
+    int getLevel();
+    void setLevel(int level);
 }

@@ -4,6 +4,9 @@ import com.honeyluck.ain.Aincraft;
 import com.honeyluck.ain.common.enums.EnumRace;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.CapabilityInject;
+import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = Aincraft.MOD_ID)
@@ -12,11 +15,22 @@ public class CapabilityFairy implements IFairy {
     private EntityPlayer player;
     private boolean isFlying;
     private float mana, maxMana;
-    private int flyingTicks;
+    private int flyingTicks, exp, level;
     private String raceName;
+
+    @CapabilityInject(IFairy.class)
+    public static final Capability<IFairy> CAPABILITY = null;
+
+    public CapabilityFairy() {
+
+    }
 
     public CapabilityFairy(EntityPlayer player) {
         this.player = player;
+    }
+
+    public static void init() {
+        CapabilityManager.INSTANCE.register(IFairy.class, new FairyStorage(), CapabilityFairy::new);
     }
 
     @Override
@@ -61,6 +75,26 @@ public class CapabilityFairy implements IFairy {
     @Override
     public float getMaxMana() {
         return this.maxMana;
+    }
+
+    @Override
+    public int getExp() {
+        return this.exp;
+    }
+
+    @Override
+    public void setExp(int exp) {
+        this.exp = exp;
+    }
+
+    @Override
+    public int getLevel() {
+        return this.level;
+    }
+
+    @Override
+    public void setLevel(int level) {
+        this.level = level;
     }
 
     @Override
