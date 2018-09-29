@@ -2,6 +2,7 @@ package com.honeyluck.ain;
 
 import com.honeyluck.ain.common.capability.CapabilityFairy;
 import com.honeyluck.ain.config.AincraftConfig;
+import com.honeyluck.ain.events.Registries;
 import com.honeyluck.ain.proxy.CommonProxy;
 import com.honeyluck.ain.util.RenderUtils;
 import net.minecraftforge.fml.common.FMLCommonHandler;
@@ -11,6 +12,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.oredict.OreDictionary;
 
 @Mod(modid = Aincraft.MOD_ID, name = Aincraft.MOD_NAME, version = Aincraft.MOD_VERSION)
 public class Aincraft {
@@ -31,6 +33,7 @@ public class Aincraft {
     @Mod.EventHandler
     public void init(FMLInitializationEvent e) {
         proxy.init();
+        OreDictionary.registerOre("blackIron", Registries.BLACK_IRON);
     }
 
     @Mod.EventHandler

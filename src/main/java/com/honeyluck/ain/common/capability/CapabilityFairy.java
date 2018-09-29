@@ -14,7 +14,7 @@ public class CapabilityFairy implements IFairy {
 
     private EntityPlayer player;
     private boolean isFlying = true;
-    private float mana, maxMana;
+    private float mana, maxMana = 500;
     private int flyingTicks, exp, level;
     private String raceName = EnumRace.NONE.getRaceName();
 

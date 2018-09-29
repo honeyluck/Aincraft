@@ -1,9 +1,12 @@
 package com.honeyluck.ain.events;
 
 import com.honeyluck.ain.Aincraft;
+import com.honeyluck.ain.client.gui.GuiRaceSelect;
 import com.honeyluck.ain.common.capability.CapabilityFairy;
 import com.honeyluck.ain.common.capability.FairyProvider;
 import com.honeyluck.ain.common.capability.IFairy;
+import com.honeyluck.ain.common.enums.EnumRace;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
@@ -24,6 +27,9 @@ public class AincraftEvents {
             EntityPlayer player = (EntityPlayer) e.getEntityLiving();
             IFairy handler = CapabilityFairy.get(player);
             handler.update();
+            if(handler.getRace() == EnumRace.NONE) {
+                //Minecraft.getMinecraft().displayGuiScreen(new GuiRaceSelect());
+            }
         }
     }
 

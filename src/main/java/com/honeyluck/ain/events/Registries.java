@@ -2,6 +2,7 @@ package com.honeyluck.ain.events;
 
 
 import com.honeyluck.ain.Aincraft;
+import com.honeyluck.ain.common.items.ItemIngot;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
@@ -23,7 +24,7 @@ public class Registries {
     public static List<Block> BLOCKS = new ArrayList<>();
 
     //Items
-
+    public static Item BLACK_IRON = createItem(new ItemIngot(), "black_iron");
     //Blocks
 
 
