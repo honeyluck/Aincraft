@@ -3,10 +3,9 @@ package com.honeyluck.ain.common.enums;
 public enum EnumHealthColour {
 
     HEALTHY(1F, 139, 200, 68),
-    GOOD(0.75F, 172, 200, 68),
-    OKAY(0.625F, 200, 195, 68),
+    GOOD(0.75F, 174, 200, 42),
     MEDIUM(0.5F, 208, 200, 16),
-    LOW(0.25F, 208, 104, 16),
+    LOW(0.25F, 208, 108, 20),
     BAD(0F, 208, 16, 24);
 
     private int red;

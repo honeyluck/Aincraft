@@ -28,7 +28,7 @@ public class AincraftEvents {
             IFairy handler = CapabilityFairy.get(player);
             handler.update();
             if(handler.getRace() == EnumRace.NONE) {
-                //Minecraft.getMinecraft().displayGuiScreen(new GuiRaceSelect());
+                Minecraft.getMinecraft().displayGuiScreen(new GuiRaceSelect());
             }
         }
     }
