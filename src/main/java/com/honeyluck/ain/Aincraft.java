@@ -3,6 +3,7 @@ package com.honeyluck.ain;
 import com.honeyluck.ain.common.capability.CapabilityFairy;
 import com.honeyluck.ain.config.AincraftConfig;
 import com.honeyluck.ain.events.Registries;
+import com.honeyluck.ain.packets.MessageFairyRace;
 import com.honeyluck.ain.proxy.CommonProxy;
 import com.honeyluck.ain.util.RenderUtils;
 import net.minecraftforge.fml.common.FMLCommonHandler;
@@ -11,6 +12,8 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.oredict.OreDictionary;
 
@@ -20,6 +23,8 @@ public class Aincraft {
     public static final String MOD_NAME = "Aincraft";
     public static final String MOD_VERSION = "Alpha 1.0";
 
+    public static SimpleNetworkWrapper NETWORK = NetworkRegistry.INSTANCE.newSimpleChannel(MOD_ID);
+
     @SidedProxy(clientSide = "com.honeyluck.ain.proxy.ClientProxy", serverSide = "com.honeyluck.ain.proxy.CommonProxy")
     public static CommonProxy proxy;
 
@@ -28,6 +33,7 @@ public class Aincraft {
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent e) {
         CapabilityFairy.init();
+        NETWORK.registerMessage(MessageFairyRace.Handler.class, MessageFairyRace.class, 1, Side.SERVER);
     }
 
     @Mod.EventHandler

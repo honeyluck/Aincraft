@@ -15,7 +15,7 @@ public class CapabilityFairy implements IFairy {
     private EntityPlayer player;
     private boolean isFlying = true;
     private float mana, maxMana = 500;
-    private int flyingTicks, exp, level;
+    private int flyingTicks, exp, level, ID;
     private String raceName = EnumRace.NONE.getRaceName();
 
     @CapabilityInject(IFairy.class)
@@ -127,8 +127,8 @@ public class CapabilityFairy implements IFairy {
     }
 
     @Override
-    public void setRace(String name) {
-        this.raceName = name;
+    public void setRace(int ID) {
+        this.ID = ID;
     }
 
     @Override
@@ -146,7 +146,7 @@ public class CapabilityFairy implements IFairy {
         nbt.setInteger("fairyLevel", level);
         nbt.setFloat("mana", mana);
         nbt.setFloat("maxMana", maxMana);
-        nbt.setString("race", raceName);
+        nbt.setInteger("race", ID);
 
         return nbt;
     }
@@ -159,7 +159,7 @@ public class CapabilityFairy implements IFairy {
         setLevel(nbt.getInteger("fairyLevel"));
         setMana(nbt.getFloat("mana"));
         setMaxMana(nbt.getFloat("maxMana"));
-        setRace(nbt.getString("race"));
+        setRace(nbt.getInteger("race"));
     }
 
 

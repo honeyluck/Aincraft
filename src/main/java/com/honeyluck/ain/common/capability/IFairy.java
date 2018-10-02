@@ -17,7 +17,7 @@ public interface IFairy extends INBTSerializable<NBTTagCompound> {
 
     //Races
     EnumRace getRace();
-    void setRace(String name);
+    void setRace(int ID);
 
     //Returns Player
     EntityPlayer getPlayer();

@@ -1,8 +1,10 @@
 package com.honeyluck.ain.client.gui;
 
+import com.honeyluck.ain.Aincraft;
 import com.honeyluck.ain.common.capability.CapabilityFairy;
 import com.honeyluck.ain.common.capability.IFairy;
 import com.honeyluck.ain.common.enums.EnumRace;
+import com.honeyluck.ain.packets.MessageFairyRace;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
@@ -51,7 +53,7 @@ public class GuiRaceSelect extends GuiScreen {
     protected void actionPerformed(GuiButton button) throws IOException {
         switch (button.id) {
             case 0:
-                handler.setRace(races[index].getRaceName());
+                Aincraft.NETWORK.sendToServer(new MessageFairyRace(races[index].getID()));
                 Minecraft.getMinecraft().displayGuiScreen(null);
                 System.out.println(player.getName() + " selected: " + races[index].getRaceName());
             case 1:
