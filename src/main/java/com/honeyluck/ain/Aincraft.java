@@ -1,51 +1,29 @@
 package com.honeyluck.ain;
 
-import com.honeyluck.ain.common.capability.CapabilityFairy;
-import com.honeyluck.ain.config.AincraftConfig;
-import com.honeyluck.ain.events.Registries;
-import com.honeyluck.ain.packets.MessageFairyRace;
-import com.honeyluck.ain.proxy.CommonProxy;
-import com.honeyluck.ain.util.RenderUtils;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.SidedProxy;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.network.NetworkRegistry;
-import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.oredict.OreDictionary;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-@Mod(modid = Aincraft.MOD_ID, name = Aincraft.MOD_NAME, version = Aincraft.MOD_VERSION)
+@Mod(Aincraft.MOD_ID)
 public class Aincraft {
     public static final String MOD_ID = "ain";
     public static final String MOD_NAME = "Aincraft";
-    public static final String MOD_VERSION = "Alpha 1.0";
+    public static final String MOD_VERSION = "0.0.1";
 
-    public static SimpleNetworkWrapper NETWORK = NetworkRegistry.INSTANCE.newSimpleChannel(MOD_ID);
+    private static final Logger LOGGER = LogManager.getLogger();
 
-    @SidedProxy(clientSide = "com.honeyluck.ain.proxy.ClientProxy", serverSide = "com.honeyluck.ain.proxy.CommonProxy")
-    public static CommonProxy proxy;
-
-    public static Side side = FMLCommonHandler.instance().getSide();
-
-    @Mod.EventHandler
-    public void preInit(FMLPreInitializationEvent e) {
-        CapabilityFairy.init();
-        NETWORK.registerMessage(MessageFairyRace.Handler.class, MessageFairyRace.class, 1, Side.SERVER);
+    public Aincraft() {
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
     }
 
-    @Mod.EventHandler
-    public void init(FMLInitializationEvent e) {
-        proxy.init();
-        OreDictionary.registerOre("blackIron", Registries.BLACK_IRON);
+    private void setup(final FMLCommonSetupEvent event) {
+        LOGGER.info("Performing Pre-Init Tasks for " + MOD_NAME);
+
     }
 
-    @Mod.EventHandler
-    public void postInit(FMLPostInitializationEvent e) {
-        if(side.isClient()) {
-            RenderUtils.setFont(AincraftConfig.MISC.font);
-        }
+    private void doClientStuff(final FMLClientSetupEvent event) {
     }
 }
