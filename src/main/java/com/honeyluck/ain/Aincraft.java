@@ -1,11 +1,12 @@
 package com.honeyluck.ain;
 
+import com.honeyluck.ain.events.Registries;
+import net.minecraft.item.ItemGroup;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 @Mod(Aincraft.MOD_ID)
 public class Aincraft {
@@ -13,14 +14,18 @@ public class Aincraft {
     public static final String MOD_NAME = "Aincraft";
     public static final String MOD_VERSION = "0.0.1";
 
-    private static final Logger LOGGER = LogManager.getLogger();
+    public ItemGroup tabItems = new ItemGroup("AinItems"){
+        @Override
+        public ItemStack createIcon() {
+            return new ItemStack(Registries.blackIron);
+        }
+    };
 
     public Aincraft() {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
     }
 
     private void setup(final FMLCommonSetupEvent event) {
-        LOGGER.info("Performing Pre-Init Tasks for " + MOD_NAME);
 
     }
 
